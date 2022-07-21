@@ -58,7 +58,7 @@
                                 <div class="col-12 text-center">
                                     <h1 class="text-white">{{ $s->title }}</h1>
                                     <div class="line m-auto mt-3 mb-3 bg-white text-white"></div>
-                                    <h3 class="text-white">{!! $s->description !!}</h3>
+                                    <h2 class="fs-6 text-white">{!! $s->description !!}</h2>
                                     {{-- <a href="" class="btn btn-info px-4 mt-4 text-white">Read More</a> --}}
                                 </div>
                             </div>
