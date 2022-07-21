@@ -42,13 +42,13 @@ class TourController extends Controller
         if (empty($request->file('banner_image'))) {
             $banner_image = null;
         } else {
-            $banner_image = $request->file('banner_image')->store('tour/banner', 'public');
+            $banner_image = $request->file('banner_image')->store('img/tour/banner', 'public');
         }
 
         if (empty($request->file('cover_image'))) {
             $cover_image = null;
         } else {
-            $cover_image = $request->file('cover_image')->store('tour/cover', 'public');
+            $cover_image = $request->file('cover_image')->store('img/tour/cover', 'public');
         }
 
         Tour::create([
@@ -100,13 +100,13 @@ class TourController extends Controller
         if (empty($request->file('banner_image'))) {
             $banner_image = $request->old_banner_image;
         } else {
-            $banner_image = $request->file('banner_image')->store('tour/banner', 'public');
+            $banner_image = $request->file('banner_image')->store('img/tour/banner', 'public');
         }
 
         if (empty($request->file('cover_image'))) {
             $cover_image = $request->old_cover_image;
         } else {
-            $cover_image = $request->file('cover_image')->store('tour/cover', 'public');
+            $cover_image = $request->file('cover_image')->store('img/tour/cover', 'public');
         }
 
         $t = Tour::find($id);

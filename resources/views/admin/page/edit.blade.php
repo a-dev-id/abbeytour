@@ -16,7 +16,6 @@
             background-color: var(--cui-form-check-input-checked-bg-color, #3399ff);
             border-color: var(--cui-form-check-input-checked-border-color, #3399ff);
         }
-
     </style>
 @endpush
 
@@ -89,7 +88,7 @@
                         <div class="col-8">
                             <div class="card">
                                 <div class="card-body p-0">
-                                    <img src="{{ asset('storage/' . $page->banner_image) }}" alt="" class="w-100">
+                                    <img src="{{ asset($page->banner_image) }}" alt="" class="w-100">
                                 </div>
                                 <div class="card-footer">
                                     Banner Image
@@ -99,7 +98,7 @@
                         <div class="col-4">
                             <div class="card">
                                 <div class="card-body p-0">
-                                    <img src="{{ asset('storage/' . $page->cover_image) }}" alt="" class="w-100">
+                                    <img src="{{ asset($page->cover_image) }}" alt="" class="w-100">
                                 </div>
                                 <div class="card-footer">
                                     Cover Image

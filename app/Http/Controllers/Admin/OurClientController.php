@@ -40,7 +40,7 @@ class OurClientController extends Controller
         if (empty($request->file('client_logo'))) {
             $client_logo = null;
         } else {
-            $client_logo = $request->file('client_logo')->store('our_client', 'public');
+            $client_logo = $request->file('client_logo')->store('img/our_client', 'public');
         }
 
         OurClient::create([
@@ -88,7 +88,7 @@ class OurClientController extends Controller
         if (empty($request->file('client_logo'))) {
             $client_logo = $request->old_client_logo;
         } else {
-            $client_logo = $request->file('client_logo')->store('our_client', 'public');
+            $client_logo = $request->file('client_logo')->store('img/our_client', 'public');
         }
 
         $oc = OurClient::find($id);

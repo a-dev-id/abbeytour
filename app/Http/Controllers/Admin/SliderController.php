@@ -40,7 +40,7 @@ class SliderController extends Controller
         if (empty($request->file('image'))) {
             $image = null;
         } else {
-            $image = $request->file('image')->store('slider', 'public');
+            $image = $request->file('image')->store('img/slider', 'public');
         }
 
         Slider::create([
@@ -90,7 +90,7 @@ class SliderController extends Controller
         if (empty($request->file('image'))) {
             $image = $request->old_image;
         } else {
-            $image = $request->file('image')->store('slider', 'public');
+            $image = $request->file('image')->store('img/slider', 'public');
         }
 
         $s = Slider::find($id);

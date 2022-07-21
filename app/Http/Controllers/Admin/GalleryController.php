@@ -42,13 +42,13 @@ class GalleryController extends Controller
         if (empty($request->file('original_image'))) {
             $original_image = null;
         } else {
-            $original_image = $request->file('original_image')->store('gallery/original', 'public');
+            $original_image = $request->file('original_image')->store('img/gallery/original', 'public');
         }
 
         if (empty($request->file('cover_image'))) {
             $cover_image = null;
         } else {
-            $cover_image = $request->file('cover_image')->store('gallery/cover', 'public');
+            $cover_image = $request->file('cover_image')->store('img/gallery/cover', 'public');
         }
 
         Gallery::create([
@@ -99,13 +99,13 @@ class GalleryController extends Controller
         if (empty($request->file('original_image'))) {
             $original_image = $request->old_original_image;
         } else {
-            $original_image = $request->file('original_image')->store('gallery/original', 'public');
+            $original_image = $request->file('original_image')->store('img/gallery/original', 'public');
         }
 
         if (empty($request->file('cover_image'))) {
             $cover_image = $request->old_cover_image;
         } else {
-            $cover_image = $request->file('cover_image')->store('gallery/cover', 'public');
+            $cover_image = $request->file('cover_image')->store('img/gallery/cover', 'public');
         }
 
         $g = Gallery::find($id);

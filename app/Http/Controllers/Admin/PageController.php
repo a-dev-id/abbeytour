@@ -42,13 +42,13 @@ class PageController extends Controller
         if (empty($request->file('banner_image'))) {
             $banner_image = null;
         } else {
-            $banner_image = $request->file('banner_image')->store('page/banner', 'public');
+            $banner_image = $request->file('banner_image')->store('img/page/banner', 'public');
         }
 
         if (empty($request->file('cover_image'))) {
             $cover_image = null;
         } else {
-            $cover_image = $request->file('cover_image')->store('page/cover', 'public');
+            $cover_image = $request->file('cover_image')->store('img/page/cover', 'public');
         }
 
         Page::create([
@@ -99,13 +99,13 @@ class PageController extends Controller
         if (empty($request->file('banner_image'))) {
             $banner_image = $request->old_banner_image;
         } else {
-            $banner_image = $request->file('banner_image')->store('page/banner', 'public');
+            $banner_image = $request->file('banner_image')->store('img/page/banner', 'public');
         }
 
         if (empty($request->file('cover_image'))) {
             $cover_image = $request->old_cover_image;
         } else {
-            $cover_image = $request->file('cover_image')->store('page/cover', 'public');
+            $cover_image = $request->file('cover_image')->store('img/page/cover', 'public');
         }
 
         $p = Page::find($id);

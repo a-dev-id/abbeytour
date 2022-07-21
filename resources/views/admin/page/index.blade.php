@@ -56,7 +56,7 @@
                                             <span class="fw-bold fs-4 ">{{ $p->title }}</span>
                                         </td>
                                         <td class="fw-bold fs-4 align-middle">
-                                            <img src="{{ asset('storage/' . $p->cover_image) }}" style="height: 50px;">
+                                            <img src="{{ asset($p->cover_image) }}" style="height: 50px;">
                                         </td>
                                         <td class="align-middle">
                                             @if ($p->featured == 'on')

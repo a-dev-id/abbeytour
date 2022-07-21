@@ -74,7 +74,7 @@ class SettingController extends Controller
         if (empty($request->file('logo'))) {
             $logo = $request->old_logo;
         } else {
-            $logo = $request->file('logo')->store('setting', 'public');
+            $logo = $request->file('logo')->store('img/setting', 'public');
         }
 
         $s = Setting::find($id);
