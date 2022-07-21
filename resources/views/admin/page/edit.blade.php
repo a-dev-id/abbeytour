@@ -116,7 +116,7 @@
                             <label for="cover_image" class="form-label">Cover Image</label>
                             <input class="form-control" type="file" id="cover_image" name="cover_image" aria-describedby="coverImageSize">
                             <input type="hidden" name="old_cover_image" value="{{ $page->cover_image }}">
-                            <div id="coverImageSize" class="form-text">Image size 400px x 300px</div>
+                            <div id="coverImageSize" class="form-text">Image size 400px x 400px</div>
                         </div>
                         <div class="mb-3">
                             <label for="banner_image" class="form-label">Banner Image</label>

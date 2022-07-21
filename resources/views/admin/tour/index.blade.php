@@ -57,7 +57,7 @@
                                             <small class="d-block">Order: {{ $t->order }}</small>
                                         </td>
                                         <td class="fw-bold fs-4 align-middle">
-                                            <img src="{{ asset('storage/' . $t->cover_image) }}" style="height: 50px;">
+                                            <img src="{{ asset($t->cover_image) }}" style="height: 50px;">
                                         </td>
                                         <td class="align-middle">
                                             @if ($t->featured == 'on')

@@ -17,7 +17,6 @@
             background-color: var(--cui-form-check-input-checked-bg-color, #3399ff);
             border-color: var(--cui-form-check-input-checked-border-color, #3399ff);
         }
-
     </style>
 @endpush
 
@@ -99,7 +98,7 @@
                         <div class="mb-3">
                             <label for="cover_image" class="form-label">Cover Image</label>
                             <input class="form-control" type="file" id="cover_image" name="cover_image" aria-describedby="coverImageSize">
-                            <div id="coverImageSize" class="form-text">Image size 400px x 300px</div>
+                            <div id="coverImageSize" class="form-text">Image size 400px x 400px</div>
                         </div>
                         <div class="mb-3">
                             <label for="banner_image" class="form-label">Banner Image</label>

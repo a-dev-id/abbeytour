@@ -9,18 +9,18 @@
     <meta property="og:description" content="{!! $page->description !!}">
     <meta property="og:type" content="article" />
     <meta property="og:url" content="{{ route('about-us.index') }}" />
-    <meta property="og:image" content="{{ asset('storage/' . $page->cover_image) }}" />
+    <meta property="og:image" content="{{ asset($page->cover_image) }}" />
 
     <meta name="twitter:title" content="{{ $page->title }}">
     <meta name="twitter:description" content="{!! $page->description !!}">
-    <meta name="twitter:image" content="{{ asset('storage/' . $page->cover_image) }}">
+    <meta name="twitter:image" content="{{ asset($page->cover_image) }}">
     <meta name="twitter:card" content="summary_large_image">
 @endsection
 
 @section('email', $setting->email)
 @section('phone', $setting->phone)
 @section('address', $setting->address)
-@section('logo', asset('storage/' . $setting->logo))
+@section('logo', asset($setting->logo))
 @section('facebook', $setting->facebook)
 @section('twitter', $setting->twitter)
 @section('instagram', $setting->instagram)
@@ -46,12 +46,11 @@
         .masthead {
             height: 100vh;
             height: 500px;
-            background-image: url('{{ asset('storage/' . $page->banner_image) }}');
+            background-image: url('{{ asset($page->banner_image) }}');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
-
     </style>
 @endpush
 
@@ -78,7 +77,7 @@
             </div>
             @foreach ($galleries as $g)
                 <div class="gallery_product col-6 col-md-3 col-xl-3 {{ $g->gallery_category_id }} filter">
-                    <img src="{{ asset('storage/' . $g->cover_image) }}" class="w-100 mx-1 my-2">
+                    <img src="{{ asset($g->cover_image) }}" class="w-100 mx-1 my-2">
                 </div>
             @endforeach
 

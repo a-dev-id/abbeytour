@@ -18,7 +18,6 @@
             background-color: var(--cui-form-check-input-checked-bg-color, #3399ff);
             border-color: var(--cui-form-check-input-checked-border-color, #3399ff);
         }
-
     </style>
 @endpush
 
@@ -148,11 +147,11 @@
                                 <label for="cover_image" class="form-label">Cover Image</label>
                                 <input class="form-control" type="file" id="cover_image" name="cover_image" aria-describedby="coverImageSize">
                                 <input type="hidden" name="old_cover_image" value="{{ $gallery->cover_image }}">
-                                <div id="coverImageSize" class="form-text">Image size 400px x 300px</div>
+                                <div id="coverImageSize" class="form-text">Image size 400px x 400px</div>
                             </div>
                             <div class="mb-3">
                                 <label for="cover_image" class="form-label">Current Cover Image</label>
-                                <img src="{{ asset('storage/' . $gallery->cover_image) }}" class="w-100">
+                                <img src="{{ asset($gallery->cover_image) }}" class="w-100">
                             </div>
                             <div class="mb-3">
                                 <label for="original_image" class="form-label">Original Image</label>
@@ -162,7 +161,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="original_image" class="form-label">Current Orignial Image</label>
-                                <img src="{{ asset('storage/' . $gallery->original_image) }}" class="w-100">
+                                <img src="{{ asset($gallery->original_image) }}" class="w-100">
                             </div>
                             <div class="mb-3">
                                 <label for="status" class="form-label">Status</label>

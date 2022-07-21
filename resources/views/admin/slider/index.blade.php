@@ -17,7 +17,6 @@
             background-color: var(--cui-form-check-input-checked-bg-color, #3399ff);
             border-color: var(--cui-form-check-input-checked-border-color, #3399ff);
         }
-
     </style>
 @endpush
 
@@ -81,7 +80,7 @@
                                             <small class="d-block">Order: {{ $s->order }}</small>
                                         </td>
                                         <td class="fw-bold fs-4 align-middle">
-                                            <img src="{{ asset('storage/' . $s->image) }}" style="height: 50px;">
+                                            <img src="{{ asset($s->image) }}" style="height: 50px;">
                                         </td>
                                         <td>
                                             @if ($s->featured == 'on')

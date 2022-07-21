@@ -9,18 +9,18 @@
     <meta property="og:description" content="{!! $tour->description !!}">
     <meta property="og:type" content="article" />
     <meta property="og:url" content="{{ route('about-us.index') }}" />
-    <meta property="og:image" content="{{ asset('storage/' . $tour->cover_image) }}" />
+    <meta property="og:image" content="{{ asset($tour->cover_image) }}" />
 
     <meta name="twitter:title" content="{{ $tour->title }}">
     <meta name="twitter:description" content="{!! $tour->description !!}">
-    <meta name="twitter:image" content="{{ asset('storage/' . $tour->cover_image) }}">
+    <meta name="twitter:image" content="{{ asset($tour->cover_image) }}">
     <meta name="twitter:card" content="summary_large_image">
 @endsection
 
 @section('email', $setting->email)
 @section('phone', $setting->phone)
 @section('address', $setting->address)
-@section('logo', asset('storage/' . $setting->logo))
+@section('logo', asset($setting->logo))
 @section('facebook', $setting->facebook)
 @section('twitter', $setting->twitter)
 @section('instagram', $setting->instagram)
@@ -46,12 +46,11 @@
         .masthead {
             height: 100vh;
             height: 500px;
-            background-image: url('{{ asset('storage/' . $tour->banner_image) }}');
+            background-image: url('{{ asset($tour->banner_image) }}');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
         }
-
     </style>
 @endpush
 

@@ -17,7 +17,6 @@
             background-color: var(--cui-form-check-input-checked-bg-color, #3399ff);
             border-color: var(--cui-form-check-input-checked-border-color, #3399ff);
         }
-
     </style>
 @endpush
 
@@ -89,7 +88,7 @@
                                         @endif
                                     </td>
                                     <td class="fw-bold fs-4 align-middle">
-                                        <img src="{{ asset('storage/' . $s->image) }}" style="height: 50px;">
+                                        <img src="{{ asset($s->image) }}" style="height: 50px;">
                                     </td>
                                     <td class="align-middle">
                                         @if ($s->status == 1)
@@ -156,11 +155,11 @@
                                 <label for="image" class="form-label">Slider Image</label>
                                 <input class="form-control" type="file" id="image" name="image" aria-describedby="sliderImageSize">
                                 <input type="hidden" name="old_image" value="{{ $slider->image }}">
-                                <div id="sliderImageSize" class="form-text">Image size 400px x 300px</div>
+                                <div id="sliderImageSize" class="form-text">Image size 400px x 400px</div>
                             </div>
                             <div class="mb-3">
                                 <label for="image" class="form-label">Current Slider Image</label>
-                                <img src="{{ asset('storage/' . $slider->image) }}" class="w-100">
+                                <img src="{{ asset($slider->image) }}" class="w-100">
                             </div>
                             <div class="mb-3">
                                 <label for="description" class="form-label">Description</label>

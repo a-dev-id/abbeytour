@@ -9,18 +9,18 @@
     <meta property="og:description" content="{!! $setting->website_description !!}">
     <meta property="og:type" content="article" />
     <meta property="og:url" content="{{ route('index') }}" />
-    <meta property="og:image" content="{{ asset('storage/' . $setting->logo) }}" />
+    <meta property="og:image" content="{{ asset($setting->logo) }}" />
 
     <meta name="twitter:title" content="{{ $setting->website_title }}">
     <meta name="twitter:description" content="{!! $setting->website_description !!}">
-    <meta name="twitter:image" content="{{ asset('storage/' . $setting->logo) }}">
+    <meta name="twitter:image" content="{{ asset($setting->logo) }}">
     <meta name="twitter:card" content="summary_large_image">
 @endsection
 
 @section('email', $setting->email)
 @section('phone', $setting->phone)
 @section('address', $setting->address)
-@section('logo', asset('storage/' . $setting->logo))
+@section('logo', asset($setting->logo))
 @section('facebook', $setting->facebook)
 @section('twitter', $setting->twitter)
 @section('instagram', $setting->instagram)
@@ -52,7 +52,7 @@
             </div>
             <div class="carousel-inner">
                 @foreach ($sliders as $s)
-                    <div class="carousel-item @if ($s->order == '1') active @else @endif" style="background-image: url('{{ asset('storage/' . $s->image) }}')">
+                    <div class="carousel-item @if ($s->order == '1') active @else @endif" style="background-image: url('{{ asset($s->image) }}')">
                         <div class="container-fluid h-100 bg-dark-transparent">
                             <div class="row h-100 align-items-center justify-content-center">
                                 <div class="col-12 text-center">
@@ -85,7 +85,7 @@
                     <div class="col-12 col-md-3 my-3 col-xl-3 mb-xl-4">
                         <div class="card card-img-zoom">
                             <div class="card-img-top overflow-hidden">
-                                <img src="{{ asset('storage/' . $t->cover_image) }}" class="w-100 p-2" alt="...">
+                                <img src="{{ asset($t->cover_image) }}" class="w-100 p-2" alt="...">
                             </div>
                             <div class="card-body p-4 text-center">
                                 <h5 class="card-title text-uppercase">{{ $t->title }}</h5>
@@ -162,7 +162,7 @@
                         <div class="col-xl-3 col-md-3 mb-5 mb-xl-0">
                             <div class="card card-img-circle bg-transparent">
                                 <div class="card-img-top border-circle position-relative overflow-hidden">
-                                    <img src="{{ asset('storage/' . $pd->cover_image) }}" class="w-100 rounded-circle" alt="...">
+                                    <img src="{{ asset($pd->cover_image) }}" class="w-100 rounded-circle" alt="...">
                                 </div>
                                 <div class="card-body p-4 text-center text-white">
                                     <h5 class="card-title text-uppercase my-2 my-xl-4">{{ $pd->title }}</h5>
@@ -200,7 +200,7 @@
                                 <div class="card mb-4 mb-xl-5 bg-white bg-xl-transparent">
                                     <div class="row g-0">
                                         <div class="col-xl-4 mb-3 mb-xl-0">
-                                            <img src="{{ asset('storage/' . $ln->cover_image) }}" class="w-100" alt="...">
+                                            <img src="{{ asset($ln->cover_image) }}" class="w-100" alt="...">
                                         </div>
                                         <div class="col-xl-8 pt-lg-2">
                                             <div class="card-body py-0">
@@ -267,7 +267,7 @@
                 <div class="col-12 client">
                     @foreach ($our_clients as $oc)
                         <div class="col-4 col-xl-2 px-2">
-                            <img src="{{ asset('storage/' . $oc->client_logo) }}" alt="" class="w-100">
+                            <img src="{{ asset($oc->client_logo) }}" alt="" class="w-100">
                         </div>
                     @endforeach
                 </div>
@@ -291,7 +291,7 @@
             </div>
             @foreach ($galleries as $g)
                 <div class="gallery_product col-6 col-md-3 col-xl-3 {{ $g->gallery_category_id }} filter">
-                    <img src="{{ asset('storage/' . $g->cover_image) }}" class="w-100 mx-1 my-2">
+                    <img src="{{ asset($g->cover_image) }}" class="w-100 mx-1 my-2">
                 </div>
             @endforeach
 
