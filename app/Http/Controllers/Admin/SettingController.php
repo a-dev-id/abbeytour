@@ -63,7 +63,7 @@ class SettingController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in storage.ssss
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Setting  $setting
