@@ -54,7 +54,7 @@
                 @foreach ($sliders as $s)
                     <div class="carousel-item @if ($s->order == '1') active @else @endif" style="background-image: url('{{ asset('storage/' . $s->image) }}')">
                         <div class="container-fluid h-100 bg-dark-transparent">
-                            <div class="row h-100 align-items-center">
+                            <div class="row h-100 align-items-center justify-content-center">
                                 <div class="col-12 text-center">
                                     <h1 class="text-white">{{ $s->title }}</h1>
                                     <div class="line m-auto mt-3 mb-3 bg-white text-white"></div>
