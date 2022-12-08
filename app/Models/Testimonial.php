@@ -13,6 +13,7 @@ class Testimonial extends Model
         'name',
         'comment',
         'source',
+        'source_link',
         'status',
         'featured',
     ];

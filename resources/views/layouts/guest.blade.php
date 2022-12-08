@@ -232,7 +232,7 @@
             </div>
             <div class="col-12 col-md-6 text-center text-md-end py-2 text-end">
                 <a href="@yield('facebook')" class="link-info text-decoration-none ms-3"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="@yield('twitter')" class="link-info text-decoration-none ms-3"><i class="fa-brands fa-twitter"></i></a>
+                <a href="@yield('twitter')" class="link-info text-decoration-none ms-3"><i class="fa-solid fa-location-dot"></i></a>
                 <a href="@yield('instagram')" class="link-info text-decoration-none ms-3"><i class="fa-brands fa-instagram"></i></a>
                 <a href="@yield('youtube')" class="link-info text-decoration-none ms-3"><i class="fa-brands fa-youtube"></i></a>
             </div>
@@ -308,8 +308,8 @@
                         <a href="@yield('facebook')" class="text-white">
                             <i class="fa-brands fa-facebook-square me-3 fa-2x"></i>
                         </a>
-                        <a href="@yield('twiiter')" class="text-white">
-                            <i class="fa-brands fa-twitter me-3 fa-2x"></i>
+                        <a href="@yield('twitter')" class="text-white">
+                            <i class="fa-solid fa-location-dot me-3 fa-2x"></i>
                         </a>
                         <a href="@yield('instagram')" class="text-white">
                             <i class="fa-brands fa-instagram me-3 fa-2x"></i>

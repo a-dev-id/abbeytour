@@ -43,13 +43,14 @@ return [
         //     'visibility' => 'public',
         //     'throw' => false,
         // ],
-
+        
         'public' => [
             'driver' => 'local',
             'root' => '../public_html',
             'url' => env('APP_URL'),
             'visibility' => 'public',
         ],
+
 
         's3' => [
             'driver' => 's3',

@@ -65,11 +65,29 @@
                     Page
                 </a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link @yield('tour')" href="{{ route('tour.index') }}">
                     <i class="nav-icon fa-solid fa-route"></i>
                     Tour
                 </a>
+            </li> --}}
+            <li class="nav-group @yield('tour_show')" aria-expanded="true">
+                <a class="nav-link nav-group-toggle" href="#">
+                    <i class="nav-icon fa-solid fa-route"></i>
+                    Tour
+                </a>
+                <ul class="nav-group-items">
+                    <li class="nav-item">
+                        <a class="nav-link @yield('tour_category')" href="{{ route('tour-category.index') }}">
+                            <i class="fa-solid fa-minus nav-icon"></i> Category
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @yield('tour')" href="{{ route('tour.index') }}">
+                            <i class="fa-solid fa-minus nav-icon"></i> Tour
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li class="nav-item">
                 <a class="nav-link @yield('why_choose_us')" href="{{ route('why-choose-us.index') }}">

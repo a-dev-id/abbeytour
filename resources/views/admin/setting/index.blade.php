@@ -40,7 +40,7 @@
                                             <label for="logo" class="form-label">Logo</label>
                                             <input class="form-control" type="file" id="logo" name="logo" aria-describedby="clientLogoSize">
                                             <input type="hidden" name="old_logo" value="{{ $setting->logo }}">
-                                            <div id="clientLogoSize" class="form-text">Image format: PNG</div>
+                                            <div id="clientLogoSize" class="form-text">Image format: PNG. Image Size: 560px X 150px</div>
                                         </div>
                                         <div class="mb-3">
                                             <label for="client_logo" class="form-label">Current Logo</label>
@@ -59,7 +59,7 @@
                                             <input class="form-control" type="text" id="facebook" name="facebook" placeholder="Facebook" value="{{ $setting->facebook }}">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="twitter" class="form-label">Twitter</label>
+                                            <label for="twitter" class="form-label">Google Map</label>
                                             <input class="form-control" type="text" id="twitter" name="twitter" placeholder="Twitter" value="{{ $setting->twitter }}">
                                         </div>
                                         <div class="mb-3">

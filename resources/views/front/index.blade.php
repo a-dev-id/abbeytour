@@ -25,6 +25,7 @@
 @section('twitter', $setting->twitter)
 @section('instagram', $setting->instagram)
 @section('youtube', $setting->youtube)
+@section('whatsapp_number', $setting->whatsapp_number)
 
 @section('tour-nav')
     @foreach ($tours as $t)
@@ -55,7 +56,7 @@
                     <div class="carousel-item @if ($s->order == '1') active @else @endif" style="background-image: url('{{ asset($s->image) }}')">
                         <div class="container-fluid h-100 bg-dark-transparent">
                             <div class="row h-100 align-items-center justify-content-center">
-                                <div class="col-12 text-center">
+                                <div class="col-12 col-lg-8 text-center">
                                     <h1 class="text-white">{{ $s->title }}</h1>
                                     <div class="line m-auto mt-3 mb-3 bg-white text-white"></div>
                                     <h2 class="fs-6 text-white">{!! $s->description !!}</h2>
@@ -239,7 +240,7 @@
                                         <div>
                                             <span class="h5 text-uppercase text-white">{{ $t->name }}</span>
                                             <span class="text-white">{!! $t->comment !!}</span>
-                                            <span class="text-white"><i><small>{{ $t->source }}</small></i></span>
+                                            <span class="text-white"><i><small><a href="{{ $t->source_link }}" class="text-white">{{ $t->source }}</a></small></i></span>
                                         </div>
                                     @endforeach
                                 </div>

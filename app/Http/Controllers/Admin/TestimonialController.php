@@ -41,6 +41,7 @@ class TestimonialController extends Controller
             'name' => $request->name,
             'comment' => $request->comment,
             'source' => $request->source,
+            'source_link' => $request->source_link,
             'status' => $request->status,
             'featured' => $request->featured,
         ]);
@@ -85,6 +86,7 @@ class TestimonialController extends Controller
         $t->name = $request->name;
         $t->comment = $request->comment;
         $t->source = $request->source;
+        $t->source_link = $request->source_link;
         $t->status = $request->status;
         $t->featured = $request->featured;
 

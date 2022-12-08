@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Slider;
-use App\Models\Tour;
+use App\Models\TourCategory;
 use App\Models\WhyChooseUs;
 use App\Models\Blog;
 use App\Models\Setting;
@@ -25,8 +25,8 @@ class IndexController extends Controller
     public function index()
     {
         $sliders = Slider::where('status', '=', '1')->orderBy('order', 'ASC')->get();
-        $tours = Tour::where('status', '=', '1')->orderBy('order', 'ASC')->get();
-        $popular_destinations = Tour::where([['status', '=', '1'], ['featured', '=', 'on']])->get();
+        $tours = TourCategory::where('status', '=', '1')->orderBy('order', 'ASC')->get();
+        $popular_destinations = TourCategory::where([['status', '=', '1'], ['featured', '=', 'on']])->get();
         $why_choose_us = WhyChooseUs::where('status', '=', '1')->get();
         $latest_news = Blog::where('status', '=', '1')->limit('6')->get();
         $setting = Setting::find(1);

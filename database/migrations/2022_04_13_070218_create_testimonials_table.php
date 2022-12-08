@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->longText('comment')->nullable();
             $table->string('source')->nullable();
+            $table->string('source_link')->nullable();
             $table->integer('status')->nullable();
             $table->string('featured')->nullable();
             $table->timestamps();

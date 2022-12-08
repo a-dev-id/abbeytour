@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('tours', function (Blueprint $table) {
             $table->id();
+            $table->integer('tour_category_id')->nullable();
             $table->string('title');
             $table->string('slug')->nullable();
             $table->text('excerpt')->nullable();

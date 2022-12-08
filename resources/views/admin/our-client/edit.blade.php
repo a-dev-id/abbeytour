@@ -163,7 +163,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="client_logo" class="form-label">Current Logo</label>
-                                <img src="{{ asset('$our_client->client_logo') }}" alt="" class="w-100">
+                                <img src="{{ asset($our_client->client_logo) }}" alt="" class="w-100">
                             </div>
                             <div class="mb-3">
                                 <label for="status" class="form-label">Status</label>

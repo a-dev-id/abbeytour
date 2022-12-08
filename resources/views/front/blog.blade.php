@@ -25,6 +25,7 @@
 @section('twitter', $setting->twitter)
 @section('instagram', $setting->instagram)
 @section('youtube', $setting->youtube)
+@section('whatsapp_number', $setting->whatsapp_number)
 
 @section('tour-nav')
     @foreach ($tours as $t)
