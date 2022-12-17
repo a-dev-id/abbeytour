@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('star')->nullable();
+            $table->date('date')->nullable();
             $table->longText('comment')->nullable();
             $table->string('source')->nullable();
-            $table->string('source_link')->nullable();
             $table->integer('status')->nullable();
             $table->string('featured')->nullable();
             $table->timestamps();

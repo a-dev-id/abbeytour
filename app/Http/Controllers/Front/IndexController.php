@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\AboutImage;
 use Illuminate\Http\Request;
 
 use App\Models\Slider;
@@ -24,6 +25,7 @@ class IndexController extends Controller
      */
     public function index()
     {
+        $about_images = AboutImage::all();
         $sliders = Slider::where('status', '=', '1')->orderBy('order', 'ASC')->get();
         $tour_categories = TourCategory::where('status', '=', '1')->orderBy('order', 'ASC')->get();
         $popular_destinations = TourCategory::where([['status', '=', '1'], ['featured', '=', 'on']])->get();
@@ -34,7 +36,7 @@ class IndexController extends Controller
         $our_clients = OurClient::where('status', '=', '1')->get();
         $gallery_categories = GalleryCategory::where('status', '=', '1')->get();
         $galleries = Gallery::where('status', '=', '1')->limit('8')->get();
-        return view('front.index')->with(compact('setting', 'sliders', 'tour_categories', 'popular_destinations', 'why_choose_us', 'latest_news', 'testimonials', 'our_clients', 'gallery_categories', 'galleries'));
+        return view('front.index')->with(compact('setting', 'sliders', 'tour_categories', 'popular_destinations', 'why_choose_us', 'latest_news', 'testimonials', 'our_clients', 'gallery_categories', 'galleries', 'about_images'));
     }
 
     /**

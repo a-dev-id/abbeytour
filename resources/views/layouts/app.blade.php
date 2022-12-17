@@ -154,11 +154,24 @@
                     Slider
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link @yield('setting')" href="{{ route('setting.show', ['1']) }}">
+
+            <li class="nav-group @yield('setting_show')" aria-expanded="true">
+                <a class="nav-link nav-group-toggle" href="#">
                     <i class="nav-icon fa-solid fa-gears"></i>
                     Setting
                 </a>
+                <ul class="nav-group-items">
+                    <li class="nav-item">
+                        <a class="nav-link @yield('setting')" href="{{ route('setting.show', ['1']) }}">
+                            <i class="fa-solid fa-minus nav-icon"></i> All Setting
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @yield('about_us_image')" href="{{ route('about-image.index') }}">
+                            <i class="fa-solid fa-minus nav-icon"></i> About Us Images
+                        </a>
+                    </li>
+                </ul>
             </li>
         </ul>
         <button class="sidebar-toggler" type="button" data-coreui-toggle="unfoldable"></button>

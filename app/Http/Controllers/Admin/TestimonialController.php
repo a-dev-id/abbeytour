@@ -39,9 +39,10 @@ class TestimonialController extends Controller
     {
         Testimonial::create([
             'name' => $request->name,
+            'star' => $request->star,
+            'date' => $request->date,
             'comment' => $request->comment,
             'source' => $request->source,
-            'source_link' => $request->source_link,
             'status' => $request->status,
             'featured' => $request->featured,
         ]);
@@ -84,9 +85,10 @@ class TestimonialController extends Controller
         $t = Testimonial::find($id);
 
         $t->name = $request->name;
+        $t->star = $request->star;
+        $t->date = $request->date;
         $t->comment = $request->comment;
         $t->source = $request->source;
-        $t->source_link = $request->source_link;
         $t->status = $request->status;
         $t->featured = $request->featured;
 

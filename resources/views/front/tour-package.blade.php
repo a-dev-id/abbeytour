@@ -89,9 +89,9 @@
 
     <section class="py-xl-5">
         <div class="container">
-            <div class="row">
+            <div class="row justify-content-center">
                 @foreach ($tours as $t)
-                    <div class="col-12 col-md-3 my-3 col-xl-3 mb-xl-4">
+                    <div class="col-12 col-md-4 my-3 col-xl-4 mb-xl-4">
                         <div class="card card-img-zoom">
                             <div class="card-img-top overflow-hidden">
                                 <img src="{{ asset($t->cover_image) }}" class="w-100 p-2" alt="...">

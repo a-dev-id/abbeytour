@@ -17,7 +17,6 @@
             background-color: var(--cui-form-check-input-checked-bg-color, #3399ff);
             border-color: var(--cui-form-check-input-checked-border-color, #3399ff);
         }
-
     </style>
 @endpush
 
@@ -147,6 +146,14 @@
                                 <input type="text" id="name" class="form-control" name="name" placeholder="Name" value="{{ $testimonial->name }}">
                             </div>
                             <div class="mb-3">
+                                <label for="star" class="form-label">Star</label>
+                                <input type="text" id="star" class="form-control" name="star" placeholder="Star" value="{{ $testimonial->star }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="date" class="form-label">Date</label>
+                                <input type="date" id="date" class="form-control" name="date" placeholder="Date" value="{{ $testimonial->date }}">
+                            </div>
+                            <div class="mb-3">
                                 <label for="comment" class="form-label">Comment</label>
                                 <textarea id="comment" class="form-control" name="comment" placeholder="Comment">{{ $testimonial->comment }}</textarea>
                             </div>
@@ -161,13 +168,13 @@
                             <div class="mb-3">
                                 <label for="status" class="form-label">Status</label>
                                 <select class="form-select" id="status" name="status">
-                                    <option value="1" @if($testimonial->status == '1') selected @else @endif>Publish</option>
-                                    <option value="0" @if($testimonial->status == '0') selected @else @endif>Draft</option>
+                                    <option value="1" @if ($testimonial->status == '1') selected @else @endif>Publish</option>
+                                    <option value="0" @if ($testimonial->status == '0') selected @else @endif>Draft</option>
                                 </select>
                             </div>
                             <div class="mb-3">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="feature" name="featured" @if($testimonial->featured == 'on') checked @else @endif>
+                                    <input class="form-check-input" type="checkbox" id="feature" name="featured" @if ($testimonial->featured == 'on') checked @else @endif>
                                     <label class="form-check-label" for="feature">Featured</label>
                                 </div>
                             </div>

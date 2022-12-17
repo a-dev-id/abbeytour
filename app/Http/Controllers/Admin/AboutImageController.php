@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\AboutImage;
 use Illuminate\Http\Request;
 
 class AboutImageController extends Controller
@@ -14,7 +15,8 @@ class AboutImageController extends Controller
      */
     public function index()
     {
-        //
+        $images = AboutImage::all();
+        return view('admin.about-image.index')->with(compact('images'));
     }
 
     /**
@@ -35,7 +37,17 @@ class AboutImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (empty($request->file('image'))) {
+            $image = null;
+        } else {
+            $image = $request->file('image')->store('img/setting/about', 'public');
+        }
+
+        AboutImage::create([
+            'title' => $request->title,
+            'image' => $image,
+        ]);
+        return redirect()->route('about-image.index');
     }
 
     /**
@@ -80,6 +92,8 @@ class AboutImageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $t = AboutImage::find($id);
+        $t->delete();
+        return redirect()->route('about-image.index');
     }
 }

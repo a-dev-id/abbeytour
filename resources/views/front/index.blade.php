@@ -113,7 +113,7 @@
     </section>
 
     <!-- about us -->
-    <section class="parallax my-5 my-xl-0" style="height: 400px; background-image: url('{{ asset('img/parallax/general-3-large.jpg') }}');">
+    <section class="parallax my-5 my-xl-0" style="height: 700px; background-image: url('{{ asset('img/parallax/general-3-large.jpg') }}');">
         <div class="w-100 h-100 bg-dark-transparent">
             <div class="h-100 container">
                 <div class="row h-100 align-items-center justify-content-center">
@@ -121,6 +121,19 @@
                         <h1 class="text-uppercase h2 text-white">{{ $setting->about_us }}</h1>
                         <div class="line m-auto mt-3 mb-3 bg-white text-white"></div>
                         <span class="text-white">{!! $setting->about_us_description !!}</span>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="about-image row">
+                                    @foreach ($about_images as $t)
+                                        <div class="col-3 px-2">
+                                            <img src="{{ asset($t->image) }}" alt="{{ $t->title }}" class="w-100 border border-color-white">
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -250,7 +263,11 @@
                                 <div class="col-12 testimonial">
                                     @foreach ($testimonials as $t)
                                         <div>
-                                            <span class="h5 text-uppercase text-white">{{ $t->name }}</span>
+                                            <span class="h5 text-uppercase text-white d-block">{{ $t->name }}</span>
+                                            @for ($i = 1; $i <= $t->star; $i++)
+                                                <i class="fa-solid fa-star text-purple text-white"></i>
+                                            @endfor
+                                            <span class="fst-italic d-block mb-3 text-white">{{ Carbon\Carbon::parse($t->date)->diffForHumans() }}</span>
                                             <span class="text-white">{!! $t->comment !!}</span>
                                             <span class="text-white"><i><small><a href="{{ $t->source_link }}" class="text-white">{{ $t->source }}</a></small></i></span>
                                         </div>
@@ -315,11 +332,13 @@
         <script>
             $(document).ready(function() {
                 $('.testimonial').slick({
+                    pauseOnHover: false,
                     autoplay: true,
                     slidesToShow: 3,
                 });
 
                 $('.client').slick({
+                    pauseOnHover: false,
                     arrows: false,
                     slidesToShow: 5,
                     slidesToScroll: 1,
@@ -348,11 +367,47 @@
                                 slidesToScroll: 3
                             }
                         }
-                        // You can unslick at a given breakpoint now by adding:
-                        // settings: "unslick"
-                        // instead of a settings object
                     ]
                 });
+            });
+        </script>
+        <script>
+            $('.about-image').slick({
+                pauseOnHover: false,
+                autoplay: true,
+                arrows: true,
+                infinite: true,
+                autoplaySpeed: 3000,
+                speed: 1000,
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                responsive: [{
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 3,
+                            infinite: true,
+                            dots: true
+                        }
+                    },
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                    // You can unslick at a given breakpoint now by adding:
+                    // settings: "unslick"
+                    // instead of a settings object
+                ]
             });
         </script>
         <script>

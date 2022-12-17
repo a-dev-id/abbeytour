@@ -17,7 +17,6 @@
             background-color: var(--cui-form-check-input-checked-bg-color, #3399ff);
             border-color: var(--cui-form-check-input-checked-border-color, #3399ff);
         }
-
     </style>
 @endpush
 
@@ -143,16 +142,20 @@
                                 <input type="text" id="name" class="form-control" name="name" placeholder="Name">
                             </div>
                             <div class="mb-3">
+                                <label for="star" class="form-label">Star</label>
+                                <input type="text" id="star" class="form-control" name="star" placeholder="Star">
+                            </div>
+                            <div class="mb-3">
+                                <label for="date" class="form-label">Date</label>
+                                <input type="date" id="date" class="form-control" name="date" placeholder="Date">
+                            </div>
+                            <div class="mb-3">
                                 <label for="comment" class="form-label">Comment</label>
                                 <textarea id="comment" class="form-control" name="comment" placeholder="Comment"></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="source" class="form-label">Source</label>
                                 <input type="text" id="source" class="form-control" name="source" placeholder="Source">
-                            </div>
-                            <div class="mb-3">
-                                <label for="source_link" class="form-label">Source Link</label>
-                                <input type="text" id="source_link" class="form-control" name="source_link" placeholder="Source Link">
                             </div>
                             <div class="mb-3">
                                 <label for="status" class="form-label">Status</label>
