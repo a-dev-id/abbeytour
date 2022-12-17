@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 use App\Models\Page;
 use App\Models\Setting;
-use App\Models\Tour;
 use App\Models\Gallery;
 use App\Models\GalleryCategory;
+use App\Models\TourCategory;
 
 class GalleryController extends Controller
 {
@@ -24,8 +24,8 @@ class GalleryController extends Controller
         $gallery_categories = GalleryCategory::where('status', '=', '1')->get();
         $galleries = Gallery::where('status', '=', '1')->limit('8')->get();
         $setting = Setting::find(1);
-        $tours = Tour::where('status', '=', '1')->orderBy('order', 'ASC')->get();
-        return view('front.gallery')->with(compact('page', 'gallery_categories', 'galleries', 'setting', 'tours'));
+        $tour_categories = TourCategory::where('status', '=', '1')->orderBy('order', 'ASC')->get();
+        return view('front.gallery')->with(compact('page', 'gallery_categories', 'galleries', 'setting', 'tour_categories'));
     }
 
     /**

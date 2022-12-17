@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
 use Illuminate\Http\Request;
 
-use App\Models\Tour;
 use App\Models\Setting;
+use App\Models\Tour;
+use App\Models\TourCategory;
 
 class TourPackageController extends Controller
 {
@@ -17,7 +19,7 @@ class TourPackageController extends Controller
      */
     public function index()
     {
-        //
+        abort(404);
     }
 
     /**
@@ -49,10 +51,12 @@ class TourPackageController extends Controller
      */
     public function show($slug)
     {
-        $tour = Tour::where([['slug', '=', $slug], ['status', '=', '1']])->first();
+        $tour_category = TourCategory::where([['slug', '=', $slug], ['status', '=', '1']])->first();
         $setting = Setting::find(1);
-        $tours = Tour::where('status', '=', '1')->orderBy('order', 'ASC')->get();
-        return view('front.tour-package')->with(compact('tour', 'tours', 'setting'));
+        $tour_categories = TourCategory::where('status', '=', '1')->orderBy('order', 'ASC')->get();
+        $tours = Tour::where([['tour_category_id', '=', $tour_category->id], ['status', '=', '1']])->get();
+
+        return view('front.tour-package')->with(compact('tour_category', 'tour_categories', 'setting', 'tours'));
     }
 
     /**

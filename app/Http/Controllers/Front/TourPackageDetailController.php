@@ -3,16 +3,14 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
+use App\Models\Package;
+use App\Models\Setting;
+use App\Models\Tour;
+use App\Models\TourCategory;
 use Illuminate\Http\Request;
 
-use App\Models\Page;
-use App\Models\Setting;
-
-use Illuminate\Support\Facades\Mail;
-use App\Mail\ContactUsMail;
-use App\Models\TourCategory;
-
-class ContactUsController extends Controller
+class TourPackageDetailController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,10 +19,7 @@ class ContactUsController extends Controller
      */
     public function index()
     {
-        $setting = Setting::find(1);
-        $page = Page::where('id', '=', '4')->first();
-        $tour_categories = TourCategory::where('status', '=', '1')->orderBy('order', 'ASC')->get();
-        return view('front.contact-us')->with(compact('setting', 'page', 'tour_categories'));
+        //
     }
 
     /**
@@ -45,20 +40,7 @@ class ContactUsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'g-recaptcha-response' => 'required|recaptchav3:contact,0.5'
-        ]);
-
-        $mail = [
-            'full_name' => $request->full_name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'message' => $request->message,
-        ];
-
-        Mail::to('dudy@abbeytravel.co.id')->send(new ContactUsMail($mail));
-
-        return redirect()->route('thank-you.index');
+        //
     }
 
     /**
@@ -67,9 +49,14 @@ class ContactUsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug, $slug1)
     {
-        //
+        $tour_categories = TourCategory::where('status', '=', '1')->orderBy('order', 'ASC')->get();
+        $setting = Setting::find(1);
+        $tour = Tour::where([['slug', '=', $slug1], ['status', '=', '1']])->first();
+        $packages = Package::where('tour_id', '=', $tour->id)->get();
+
+        return view('front.tour-package-detail')->with(compact('setting', 'tour', 'tour_categories', 'packages'));
     }
 
     /**

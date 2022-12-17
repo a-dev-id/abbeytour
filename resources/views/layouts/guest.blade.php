@@ -207,6 +207,27 @@
             border-color: #0263ca;
         }
 
+        .navbar-nav li:hover>ul.dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-submenu {
+            position: relative;
+        }
+
+        .dropdown-submenu>.dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -6px;
+        }
+
+        /* rotate caret on hover */
+        .dropdown-menu>li>a:hover:after {
+            text-decoration: underline;
+            transform: rotate(-90deg);
+        }
+
+
         @media (min-width: 320px) and (max-width: 480px) {
 
             .logo {
@@ -214,7 +235,6 @@
             }
 
         }
-
     </style>
 
     @stack('css')
@@ -251,12 +271,7 @@
                     <li class="nav-item">
                         <a class="nav-link fs-6 fw-bold @yield('home')" aria-current="page" href="{{ route('index') }}" data-turbolinks="true">Home</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle fs-6 fw-bold @yield('tour-package')" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tour Package</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            @yield('tour-nav')
-                        </div>
-                    </li>
+                    @yield('tour-nav')
                     <li class="nav-item">
                         <a class="nav-link fs-6 fw-bold @yield('about-us')" href="{{ route('about-us.index') }}">About Us</a>
                     </li>
@@ -314,9 +329,9 @@
                         <a href="@yield('instagram')" class="text-white">
                             <i class="fa-brands fa-instagram me-3 fa-2x"></i>
                         </a>
-                        <a href="@yield('youtube')" class="text-white">
+                        {{-- <a href="@yield('youtube')" class="text-white">
                             <i class="fa-brands fa-youtube me-3 fa-2x"></i>
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
             </div>

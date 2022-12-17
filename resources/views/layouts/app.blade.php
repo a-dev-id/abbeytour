@@ -87,6 +87,11 @@
                             <i class="fa-solid fa-minus nav-icon"></i> Tour
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link @yield('package')" href="{{ route('package.index') }}">
+                            <i class="fa-solid fa-minus nav-icon"></i> Package
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item">

@@ -28,14 +28,26 @@
 @section('whatsapp_number', $setting->whatsapp_number)
 
 @section('tour-nav')
-    @foreach ($tours as $t)
-        <a class="dropdown-item" href="{{ route('tour-package.show', [$t->slug]) }}">{{ $t->title }}</a>
-    @endforeach
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle fs-6 fw-bold @yield('tour-package')" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tour Package</a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            @foreach ($tour_categories as $t)
+                <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle" href="{{ url('tour-package', [$t->slug]) }}">{{ $t->title }}</a>
+                    <ul class="dropdown-menu">
+                        @foreach (\App\Models\Tour::where('tour_category_id', '=', $t->id)->get() as $data)
+                            <li><a class="dropdown-item" href="{{ url('tour-package', [$t->slug, $data->slug]) }}">{{ $data->title }}</a></li>
+                        @endforeach
+                    </ul>
+                </li>
+            @endforeach
+        </ul>
+    </li>
 @endsection
 
 @section('tour-footer')
-    @foreach ($tours as $t)
-        <li><a href="{{ route('tour-package.show', [$t->slug]) }}" class="text-decoration-none text-white">{{ $t->title }}</a></li>
+    @foreach ($tour_categories as $t)
+        <li><a href="{{ url('tour-package', [$t->slug]) }}" class="text-decoration-none text-white">{{ $t->title }}</a></li>
     @endforeach
 @endsection
 

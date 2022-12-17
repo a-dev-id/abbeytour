@@ -28,14 +28,26 @@
 @section('whatsapp_number', $setting->whatsapp_number)
 
 @section('tour-nav')
-    @foreach ($tours as $t)
-        <a class="dropdown-item" href="{{ route('tour-package.show', [$t->slug]) }}">{{ $t->title }}</a>
-    @endforeach
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle fs-6 fw-bold @yield('tour-package')" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Tour Package</a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            @foreach ($tour_categories as $t)
+                <li class="dropdown-submenu">
+                    <a class="dropdown-item dropdown-toggle" href="{{ url('tour-package', [$t->slug]) }}">{{ $t->title }}</a>
+                    <ul class="dropdown-menu">
+                        @foreach (\App\Models\Tour::where('tour_category_id', '=', $t->id)->get() as $data)
+                            <li><a class="dropdown-item" href="{{ url('tour-package', [$t->slug, $data->slug]) }}">{{ $data->title }}</a></li>
+                        @endforeach
+                    </ul>
+                </li>
+            @endforeach
+        </ul>
+    </li>
 @endsection
 
 @section('tour-footer')
-    @foreach ($tours as $t)
-        <li><a href="{{ route('tour-package.show', [$t->slug]) }}" class="text-decoration-none text-white">{{ $t->title }}</a></li>
+    @foreach ($tour_categories as $t)
+        <li><a href="{{ url('tour-package', [$t->slug]) }}" class="text-decoration-none text-white">{{ $t->title }}</a></li>
     @endforeach
 @endsection
 
@@ -82,7 +94,7 @@
     <section class="py-xl-5 bg-light">
         <div class="container">
             <div class="row">
-                @foreach ($tours as $t)
+                @foreach ($tour_categories as $t)
                     <div class="col-12 col-md-3 my-3 col-xl-3 mb-xl-4">
                         <div class="card card-img-zoom">
                             <div class="card-img-top overflow-hidden">
@@ -91,7 +103,7 @@
                             <div class="card-body p-4 text-center">
                                 <h5 class="card-title text-uppercase">{{ $t->title }}</h5>
                                 <p class="card-text">{!! $t->excerpt !!}</p>
-                                <a href="{{ route('tour-package.show', [$t->slug]) }}" class="btn btn-info btn-sm text-uppercase text-white">read more</a>
+                                <a href="{{ url('tour-package', [$t->slug]) }}" class="btn btn-info btn-sm text-uppercase text-white">read more</a>
                             </div>
                         </div>
                     </div>
@@ -171,7 +183,7 @@
                                         {!! $pd->excerpt !!}
                                     </span>
                                     {{-- <h5 class="py-3">$200</h5> --}}
-                                    <a href="{{ route('tour-package.show', [$pd->slug]) }}" class="btn btn-light text-dark text-uppercase px-4">read more</a>
+                                    <a href="{{ url('tour-package', [$pd->slug]) }}" class="btn btn-light text-dark text-uppercase px-4">read more</a>
                                 </div>
                             </div>
                         </div>
@@ -228,8 +240,8 @@
     <section class="parallax my-5 my-xl-0" style="height: 400px; background-image: url('{{ asset('img/parallax/general-6-large.jpg') }}');">
         <div class="w-100 h-100" style="background: rgba(0, 0, 0, 0.5)">
             <div class="h-100 container">
-                <div class="row h-100 align-items-center justify-content-end">
-                    <div class="col-md-7 col-xl-7">
+                <div class="row h-100 align-items-center justify-content-center">
+                    <div class="col-md-12 col-xl-12">
                         <h1 class="text-uppercase h2 text-white">{{ $setting->testimonial }}</h1>
                         <div class="line mt-3 mb-3 bg-white text-white"></div>
                         {!! $setting->testimonial_description !!}
@@ -268,7 +280,7 @@
                 <div class="col-12 client">
                     @foreach ($our_clients as $oc)
                         <div class="col-4 col-xl-2 px-2">
-                            <img src="{{ asset($oc->client_logo) }}" alt="" class="w-100">
+                            <img src="{{ asset($oc->client_logo) }}" alt="" class="w-100" style="width: 160px !important;">
                         </div>
                     @endforeach
                 </div>
@@ -304,6 +316,7 @@
             $(document).ready(function() {
                 $('.testimonial').slick({
                     autoplay: true,
+                    slidesToShow: 3,
                 });
 
                 $('.client').slick({

@@ -25,7 +25,7 @@ class IndexController extends Controller
     public function index()
     {
         $sliders = Slider::where('status', '=', '1')->orderBy('order', 'ASC')->get();
-        $tours = TourCategory::where('status', '=', '1')->orderBy('order', 'ASC')->get();
+        $tour_categories = TourCategory::where('status', '=', '1')->orderBy('order', 'ASC')->get();
         $popular_destinations = TourCategory::where([['status', '=', '1'], ['featured', '=', 'on']])->get();
         $why_choose_us = WhyChooseUs::where('status', '=', '1')->get();
         $latest_news = Blog::where('status', '=', '1')->limit('6')->get();
@@ -34,7 +34,7 @@ class IndexController extends Controller
         $our_clients = OurClient::where('status', '=', '1')->get();
         $gallery_categories = GalleryCategory::where('status', '=', '1')->get();
         $galleries = Gallery::where('status', '=', '1')->limit('8')->get();
-        return view('front.index')->with(compact('setting', 'sliders', 'tours', 'popular_destinations', 'why_choose_us', 'latest_news', 'testimonials', 'our_clients', 'gallery_categories', 'galleries'));
+        return view('front.index')->with(compact('setting', 'sliders', 'tour_categories', 'popular_destinations', 'why_choose_us', 'latest_news', 'testimonials', 'our_clients', 'gallery_categories', 'galleries'));
     }
 
     /**

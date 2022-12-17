@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tour;
+use App\Models\TourCategory;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Str;
@@ -28,7 +29,8 @@ class TourController extends Controller
      */
     public function create()
     {
-        return view('admin.tour.create');
+        $tour_category = TourCategory::all();
+        return view('admin.tour.create')->with(compact('tour_category'));
     }
 
     /**
@@ -52,6 +54,7 @@ class TourController extends Controller
         }
 
         Tour::create([
+            'tour_category_id' => $request->tour_category_id,
             'title' => $request->title,
             'slug' => Str::slug($request->title),
             'description' => $request->description,
@@ -85,7 +88,8 @@ class TourController extends Controller
     public function edit($id)
     {
         $tour = Tour::find($id);
-        return view('admin.tour.edit')->with(compact('tour'));
+        $tour_category = TourCategory::all();
+        return view('admin.tour.edit')->with(compact('tour', 'tour_category'));
     }
 
     /**
@@ -111,6 +115,7 @@ class TourController extends Controller
 
         $t = Tour::find($id);
 
+        $t->tour_category_id = $request->tour_category_id;
         $t->title = $request->title;
         $t->slug = Str::slug($request->title);
         $t->description = $request->description;

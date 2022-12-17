@@ -1,18 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Front;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Models\Page;
-use App\Models\Setting;
-
-use Illuminate\Support\Facades\Mail;
-use App\Mail\ContactUsMail;
-use App\Models\TourCategory;
-
-class ContactUsController extends Controller
+class AboutImageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,10 +14,7 @@ class ContactUsController extends Controller
      */
     public function index()
     {
-        $setting = Setting::find(1);
-        $page = Page::where('id', '=', '4')->first();
-        $tour_categories = TourCategory::where('status', '=', '1')->orderBy('order', 'ASC')->get();
-        return view('front.contact-us')->with(compact('setting', 'page', 'tour_categories'));
+        //
     }
 
     /**
@@ -45,20 +35,7 @@ class ContactUsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'g-recaptcha-response' => 'required|recaptchav3:contact,0.5'
-        ]);
-
-        $mail = [
-            'full_name' => $request->full_name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'message' => $request->message,
-        ];
-
-        Mail::to('dudy@abbeytravel.co.id')->send(new ContactUsMail($mail));
-
-        return redirect()->route('thank-you.index');
+        //
     }
 
     /**

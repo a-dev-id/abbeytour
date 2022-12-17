@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Package;
+use App\Models\Tour;
 use App\Models\TourCategory;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Str;
 
-class TourCategoryController extends Controller
+class PackageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +19,8 @@ class TourCategoryController extends Controller
      */
     public function index()
     {
-        $tour_categories = TourCategory::all();
-        return view('admin.tour-category.index')->with(compact('tour_categories'));
+        $packages = Package::all();
+        return view('admin.package.index')->with(compact('packages'));
     }
 
     /**
@@ -28,7 +30,9 @@ class TourCategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.tour-category.create');
+        $tour_categories = TourCategory::all();
+        $tours =  Tour::all();
+        return view('admin.package.create')->with(compact('tour_categories', 'tours'));
     }
 
     /**
@@ -39,30 +43,24 @@ class TourCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        if (empty($request->file('banner_image'))) {
-            $banner_image = null;
-        } else {
-            $banner_image = $request->file('banner_image')->store('img/tour/category/banner', 'public');
-        }
-
         if (empty($request->file('cover_image'))) {
             $cover_image = null;
         } else {
-            $cover_image = $request->file('cover_image')->store('img/tour/category/cover', 'public');
+            $cover_image = $request->file('cover_image')->store('img/tour/package/cover', 'public');
         }
 
-        TourCategory::create([
+        Package::create([
             'title' => $request->title,
+            'tour_id' => $request->tour_id,
             'slug' => Str::slug($request->title),
             'description' => $request->description,
+            'destination' => $request->destination,
             'excerpt' => $request->excerpt,
             'cover_image' => $cover_image,
-            'banner_image' => $banner_image,
-            'order' => $request->order,
             'status' => $request->status,
             'featured' => $request->featured,
         ]);
-        return redirect()->route('tour-category.index');
+        return redirect()->route('package.index');
     }
 
     /**
@@ -84,8 +82,10 @@ class TourCategoryController extends Controller
      */
     public function edit($id)
     {
-        $tour = TourCategory::find($id);
-        return view('admin.tour-category.edit')->with(compact('tour'));
+        $package = Package::find($id);
+        $tour_categories = TourCategory::all();
+        $tours =  Tour::all();
+        return view('admin.package.edit')->with(compact('tour_categories', 'tours', 'package'));
     }
 
     /**
@@ -97,33 +97,27 @@ class TourCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if (empty($request->file('banner_image'))) {
-            $banner_image = $request->old_banner_image;
-        } else {
-            $banner_image = $request->file('banner_image')->store('img/tour/category/banner', 'public');
-        }
-
         if (empty($request->file('cover_image'))) {
             $cover_image = $request->old_cover_image;
         } else {
-            $cover_image = $request->file('cover_image')->store('img/tour/category/cover', 'public');
+            $cover_image = $request->file('cover_image')->store('img/tour/package/cover', 'public');
         }
 
-        $t = TourCategory::find($id);
+        $t = Package::find($id);
 
         $t->title = $request->title;
+        $t->tour_id = $request->tour_id;
         $t->slug = Str::slug($request->title);
         $t->description = $request->description;
+        $t->destination = $request->destination;
         $t->excerpt = $request->excerpt;
         $t->cover_image = $cover_image;
-        $t->banner_image = $banner_image;
-        $t->order = $request->order;
         $t->status = $request->status;
         $t->featured = $request->featured;
 
         $t->save();
 
-        return redirect()->route('tour-category.index');
+        return redirect()->route('package.index');
     }
 
     /**
@@ -134,8 +128,8 @@ class TourCategoryController extends Controller
      */
     public function destroy($id)
     {
-        $t = TourCategory::find($id);
+        $t = Package::find($id);
         $t->delete();
-        return redirect()->route('tour-category.index');
+        return redirect()->route('package.index');
     }
 }

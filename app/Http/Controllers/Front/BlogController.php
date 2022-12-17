@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Blog;
 use App\Models\Page;
 use App\Models\Setting;
-use App\Models\Tour;
+use App\Models\TourCategory;
 
 class BlogController extends Controller
 {
@@ -22,8 +22,8 @@ class BlogController extends Controller
         $page = Page::where('id', '=', '2')->first();
         $blogs = Blog::where('status', '=', '1')->latest()->paginate(9);
         $setting = Setting::find(1);
-        $tours = Tour::where('status', '=', '1')->orderBy('order', 'ASC')->get();
-        return view('front.blog')->with(compact('page', 'blogs', 'setting', 'tours'));
+        $tour_categories = TourCategory::where('status', '=', '1')->orderBy('order', 'ASC')->get();
+        return view('front.blog')->with(compact('page', 'blogs', 'setting', 'tour_categories'));
     }
 
     /**
@@ -57,8 +57,8 @@ class BlogController extends Controller
     {
         $blog = Blog::where([['slug', '=', $slug], ['status', '=', '1']])->first();
         $setting = Setting::find(1);
-        $tours = Tour::where('status', '=', '1')->orderBy('order', 'ASC')->get();
-        return view('front.blog-detail')->with(compact('blog', 'setting', 'tours'));
+        $tour_categories = TourCategory::where('status', '=', '1')->orderBy('order', 'ASC')->get();
+        return view('front.blog-detail')->with(compact('blog', 'setting', 'tour_categories'));
     }
 
     /**

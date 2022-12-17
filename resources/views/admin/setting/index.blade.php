@@ -13,6 +13,24 @@
         </ol>
     </nav>
 @endsection
+
+@push('css')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" />
+@endpush
+
+@push('js')
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#list').DataTable({
+                // "ordering": false,
+                "pageLength": 25,
+            });
+        });
+    </script>
+@endpush
+
 <x-app-layout>
     <div class="container-fluid">
         <form class="row mb-5" method="POST" enctype="multipart/form-data" action="{{ route('setting.update', [$setting->id]) }}">
@@ -104,6 +122,99 @@
                                             <textarea class="form-control" name="about_us_description" id="about_us_description" rows="5" placeholder="About Us Description">{{ $setting->about_us_description }}</textarea>
                                         </div>
                                         <div class="mb-3">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <div class="row">
+                                                        <div class="col-6">About Us Images</div>
+                                                        <div class="col-6 text-end">
+                                                            <button type="button" class="btn btn-sm btn-success text-white" data-coreui-toggle="modal" data-coreui-target="#createModal">
+                                                                <i class="fa-solid fa-circle-plus"></i> Add New
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header bg-success text-white">
+                                                                <h5 class="modal-title" id="createModalLabel"><i class="fa-solid fa-circle-plus"></i> Add New</h5>
+                                                                <button type="button" class="btn-close" data-coreui-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form method="POST" action="{{ route('about-image.store') }}">
+                                                                    <div class="mb-3">
+                                                                        <label for="cover_image" class="form-label">Cover Image</label>
+                                                                        <input class="form-control" type="file" id="cover_image" name="cover_image" aria-describedby="coverImageSize">
+                                                                        <div id="coverImageSize" class="form-text">Image size 400px x 400px</div>
+                                                                    </div>
+                                                                    <hr>
+                                                                    <button type="button" class="btn btn-secondary text-white" data-coreui-dismiss="modal">Close</button>
+                                                                    <button type="button" class="btn btn-success text-white"><i class="fa-solid fa-circle-plus"></i> Add New</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-body">
+                                                    <table id="list" class="table-striped w-100 table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Title</th>
+                                                                <th>Image</th>
+                                                                <th class="text-end" style="width: 80px">Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach ($about_images as $p)
+                                                                <tr>
+                                                                    <td class="align-middle">
+                                                                        <span class="fw-bold fs-4 ">{{ $p->title }}</span>
+                                                                    </td>
+                                                                    <td class="fw-bold fs-4 align-middle">
+                                                                        <img src="{{ asset($p->image) }}" style="height: 50px;">
+                                                                    </td>
+
+                                                                    <td class="text-end align-middle">
+                                                                        <button class="btn btn-danger btn-sm text-white" data-coreui-toggle="modal" data-coreui-target="#deleteModal{{ $p->id }}"><i class="fa-solid fa-trash"></i></button>
+
+                                                                        <div class="modal fade" id="deleteModal{{ $p->id }}" tabindex="-1" aria-labelledby="deleteModal{{ $p->id }}Label" aria-hidden="true">
+                                                                            <div class="modal-dialog">
+                                                                                <div class="modal-content">
+                                                                                    <form method="POST" action="{{ route('page.destroy', [$p->id]) }}">
+                                                                                        @csrf
+                                                                                        @method('DELETE')
+                                                                                        <div class="modal-header bg-danger">
+                                                                                            <h5 class="modal-title text-white" id="deleteModal{{ $p->id }}Label"><i class="fa-solid fa-triangle-exclamation"></i> Warning</h5>
+                                                                                            <button type="button" class="btn-close text-white" data-coreui-dismiss="modal" aria-label="Close"></button>
+                                                                                        </div>
+                                                                                        <div class="modal-body">
+                                                                                            Are you sure want to delete this <strong>"{{ $p->title }}"</strong> ?
+                                                                                        </div>
+                                                                                        <div class="modal-footer">
+                                                                                            <button type="button" class="btn btn-secondary text-white" data-coreui-dismiss="modal"><i class="fa-solid fa-x"></i> Cancel</button>
+                                                                                            <button type="submit" class="btn btn-danger text-white"><i class="fa-solid fa-trash"></i> Delete</button>
+                                                                                        </div>
+                                                                                    </form>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <th>Title</th>
+                                                                <th>Image</th>
+                                                                <th class="text-end">Action</th>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 pt-5">
                                             <label for="why_choose_us" class="form-label">Why Choose Us</label>
                                             <input class="form-control" type="text" id="why_choose_us" name="why_choose_us" placeholder="Why Choose Us" value="{{ $setting->why_choose_us }}">
                                         </div>
@@ -111,7 +222,7 @@
                                             <label for="why_choose_us_description" class="form-label">Why Choose Us Description</label>
                                             <textarea class="form-control" name="why_choose_us_description" id="why_choose_us_description" rows="5" placeholder="Why Choose Us Description">{{ $setting->why_choose_us_description }}</textarea>
                                         </div>
-                                        <div class="mb-3">
+                                        <div class="mb-3 pt-5">
                                             <label for="popular_destination" class="form-label">Popular Destination</label>
                                             <input class="form-control" type="text" id="popular_destination" name="popular_destination" placeholder="Popular Destination" value="{{ $setting->popular_destination }}">
                                         </div>
@@ -119,6 +230,8 @@
                                             <label for="popular_destination_description" class="form-label">Popular Destination Description</label>
                                             <textarea class="form-control" name="popular_destination_description" id="popular_destination_description" rows="5" placeholder="Popular Destination Description">{{ $setting->popular_destination_description }}</textarea>
                                         </div>
+                                    </div>
+                                    <div class="col-6">
                                         <div class="mb-3">
                                             <label for="latest_news" class="form-label">Latest News</label>
                                             <input class="form-control" type="text" id="latest_news" name="latest_news" placeholder="Latest News" value="{{ $setting->latest_news }}">
@@ -127,9 +240,7 @@
                                             <label for="latest_news_description" class="form-label">Latest News Description</label>
                                             <textarea class="form-control" name="latest_news_description" id="latest_news_description" rows="5" placeholder="Latest News Description">{{ $setting->latest_news_description }}</textarea>
                                         </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="mb-3">
+                                        <div class="mb-3 pt-5">
                                             <label for="testimonial" class="form-label">Testimonial</label>
                                             <input class="form-control" type="text" id="testimonial" name="testimonial" placeholder="Testimonial" value="{{ $setting->testimonial }}">
                                         </div>
@@ -137,7 +248,7 @@
                                             <label for="testimonial_description" class="form-label">Testimonial Description</label>
                                             <textarea class="form-control" name="testimonial_description" id="testimonial_description" rows="5" placeholder="Testimonial Description">{{ $setting->testimonial_description }}</textarea>
                                         </div>
-                                        <div class="mb-3">
+                                        <div class="mb-3 pt-5">
                                             <label for="our_client" class="form-label">Our Client</label>
                                             <input class="form-control" type="text" id="our_client" name="our_client" placeholder="Our Client" value="{{ $setting->our_client }}">
                                         </div>
@@ -145,7 +256,7 @@
                                             <label for="our_client_description" class="form-label">Our Client Description</label>
                                             <textarea class="form-control" name="our_client_description" id="our_client_description" rows="5" placeholder="Our Client Description">{{ $setting->our_client_description }}</textarea>
                                         </div>
-                                        <div class="mb-3">
+                                        <div class="mb-3 pt-5">
                                             <label for="gallery" class="form-label">Gallery</label>
                                             <input class="form-control" type="text" id="gallery" name="gallery" placeholder="Gallery" value="{{ $setting->gallery }}">
                                         </div>
@@ -160,7 +271,6 @@
                     </div>
                 </div>
             </div>
-    </div>
-    </form>
+        </form>
     </div>
 </x-app-layout>

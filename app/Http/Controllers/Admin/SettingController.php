@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\AboutImage;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 
@@ -48,7 +49,8 @@ class SettingController extends Controller
     public function show($id)
     {
         $setting = Setting::find($id);
-        return view('admin.setting.index')->with(compact('setting'));
+        $about_images = AboutImage::all();
+        return view('admin.setting.index')->with(compact('setting', 'about_images'));
     }
 
     /**

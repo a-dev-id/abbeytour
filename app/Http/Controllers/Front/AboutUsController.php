@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Page;
 use App\Models\Setting;
-use App\Models\Tour;
+use App\Models\TourCategory;
 
 class AboutUsController extends Controller
 {
@@ -20,8 +20,8 @@ class AboutUsController extends Controller
     {
         $setting = Setting::find(1);
         $page = Page::where('id', '=', '1')->first();
-        $tours = Tour::where('status', '=', '1')->orderBy('order', 'ASC')->get();
-        return view('front.about-us')->with(compact('setting', 'page', 'tours'));
+        $tour_categories = TourCategory::where('status', '=', '1')->orderBy('order', 'ASC')->get();
+        return view('front.about-us')->with(compact('setting', 'page', 'tour_categories'));
     }
 
     /**

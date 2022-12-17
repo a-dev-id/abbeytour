@@ -113,6 +113,15 @@
                     <div class="card-header bg-warning text-white">Detail</div>
                     <div class="card-body">
                         <div class="mb-3">
+                            <label for="category" class="form-label">Category</label>
+                            <select class="form-select" id="category" name="tour_category_id">
+                                <option>Select Category</option>
+                                @foreach ($tour_category as $data)
+                                    <option value="{{ $data->id }}" @if ($data->id == $tour->tour_category_id) selected @else @endif>{{ $data->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
                             <label for="cover_image" class="form-label">Cover Image</label>
                             <input class="form-control" type="file" id="cover_image" name="cover_image" aria-describedby="coverImageSize">
                             <input type="hidden" name="old_cover_image" value="{{ $tour->cover_image }}">

@@ -43,10 +43,11 @@ return [
         //     'visibility' => 'public',
         //     'throw' => false,
         // ],
-        
+
         'public' => [
             'driver' => 'local',
-            'root' => '../public_html',
+            // 'root' => '../public_html',
+            'root' => '../public',
             'url' => env('APP_URL'),
             'visibility' => 'public',
         ],

@@ -19,24 +19,17 @@ Route::resource('/about-us', App\Http\Controllers\Front\AboutUsController::class
 Route::resource('/blog', App\Http\Controllers\Front\BlogController::class);
 Route::resource('/gallery', App\Http\Controllers\Front\GalleryController::class);
 Route::resource('/contact-us', App\Http\Controllers\Front\ContactUsController::class);
-Route::resource('/tour-package', App\Http\Controllers\Front\TourPackageController::class);
+Route::get('/tour-package/{slug}', [App\Http\Controllers\Front\TourPackageController::class, 'show']);
+Route::get('/tour-package/{slug}/{slug1}', [App\Http\Controllers\Front\TourPackageDetailController::class, 'show']);
 Route::resource('/thank-you', App\Http\Controllers\Front\ThankYouController::class);
 
 // admin
 Route::middleware(['auth'])->prefix('panel/admin')->group(function () {
-    // Route::prefix('panel/admin')->group(function () {
     Route::resource('dashboard', App\Http\Controllers\Admin\DashboardController::class);
     Route::resource('page', App\Http\Controllers\Admin\PageController::class);
     Route::resource('tour', App\Http\Controllers\Admin\TourController::class);
     Route::resource('tour-category', App\Http\Controllers\Admin\TourCategoryController::class);
-    // Route::resource('tour/category', App\Http\Controllers\Admin\TourCategoryController::class)->names([
-    //     'index' => 'tour.category.index',
-    //     'create' => 'tour.category.create',
-    //     'store' => 'tour.category.store',
-    //     'edit' => 'tour.category.edit',
-    //     'update' => 'tour.category.update',
-    //     'destroy' => 'tour.category.destroy',
-    // ]);
+    Route::resource('package', App\Http\Controllers\Admin\PackageController::class);
     Route::resource('why-choose-us', App\Http\Controllers\Admin\WhyChooseUsController::class);
     Route::resource('blog/category', App\Http\Controllers\Admin\BlogCategoryController::class)->names([
         'index' => 'blog.category.index',
@@ -60,11 +53,12 @@ Route::middleware(['auth'])->prefix('panel/admin')->group(function () {
     Route::resource('galleries', App\Http\Controllers\Admin\GalleryController::class);
     Route::resource('slider', App\Http\Controllers\Admin\SliderController::class);
     Route::resource('setting', App\Http\Controllers\Admin\SettingController::class);
+    Route::resource('about-image', App\Http\Controllers\Admin\AboutImageController::class);
 
-    // Route::get('optimize-clear', function () {
-    //     \Artisan::call('optimize:clear');
-    //     dd("Done");
-    // });
+    Route::get('optimize-clear', function () {
+        \Artisan::call('optimize:clear');
+        dd("Done");
+    });
 });
 
 require __DIR__ . '/auth.php';
