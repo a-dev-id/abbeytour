@@ -35,7 +35,7 @@
                 <li class="dropdown-submenu">
                     <a class="dropdown-item dropdown-toggle" href="{{ url('tour-package', [$t->slug]) }}">{{ $t->title }}</a>
                     <ul class="dropdown-menu">
-                        @foreach (\App\Models\Tour::where('tour_category_id', '=', $t->id)->get() as $data)
+                        @foreach (\App\Models\Tour::where('tour_category_id', '=', $t->id)->where('status', '=', '1')->get() as $data)
                             <li><a class="dropdown-item" href="{{ url('tour-package', [$t->slug, $data->slug]) }}">{{ $data->title }}</a></li>
                         @endforeach
                     </ul>
@@ -124,7 +124,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <a href="https://api.whatsapp.com/send?phone=6281353033707&text=Hi, I would like to Book *{{ $t->title }}* Package" type="button" class="btn btn-success" target="_blank"><i class="fa-brands fa-whatsapp"></i> Book Package</a>
+                                    <a href="https://api.whatsapp.com/send?phone=6281353033707&text=Hi, I would like to Book *{{ $tour->title }} - {{ $t->title }}* Package" type="button" class="btn btn-success" target="_blank"><i class="fa-brands fa-whatsapp"></i> Book Package</a>
                                 </div>
                             </div>
                         </div>

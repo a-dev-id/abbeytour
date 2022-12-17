@@ -34,7 +34,7 @@
                 <li class="dropdown-submenu">
                     <a class="dropdown-item dropdown-toggle" href="{{ url('tour-package', [$t->slug]) }}">{{ $t->title }}</a>
                     <ul class="dropdown-menu">
-                        @foreach (\App\Models\Tour::where('tour_category_id', '=', $t->id)->get() as $data)
+                        @foreach (\App\Models\Tour::where('tour_category_id', '=', $t->id)->where('status', '=', '1')->get() as $data)
                             <li><a class="dropdown-item" href="{{ url('tour-package', [$t->slug, $data->slug]) }}">{{ $data->title }}</a></li>
                         @endforeach
                     </ul>

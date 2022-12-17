@@ -56,7 +56,7 @@ class ContactUsController extends Controller
             'message' => $request->message,
         ];
 
-        Mail::to('dudy@abbeytravel.co.id')->send(new ContactUsMail($mail));
+        Mail::to('info.dps@abbey.travel')->cc('dudy@abbeytravel.co.id')->send(new ContactUsMail($mail));
 
         return redirect()->route('thank-you.index');
     }
